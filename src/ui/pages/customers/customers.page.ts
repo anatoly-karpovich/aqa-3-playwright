@@ -3,6 +3,7 @@ import { SalesPortalPage } from "../salesPortal.page";
 import { COUNTRIES } from "data/customers/countries.data";
 import { FilterModal } from "../modals/customers/filter.modal";
 import { DeleteCustomerModal } from "../modals/customers/delete.modal";
+import { customersSortField } from "types/api.types";
 
 export class CustomersPage extends SalesPortalPage {
   //Modals
@@ -17,8 +18,10 @@ export class CustomersPage extends SalesPortalPage {
   readonly chipButton = this.page.locator(".chip");
   readonly searchChipButton = this.page.locator('div[data-chip-customers="search"]');
 
+  //Table
+  readonly table = this.page.locator("#table-customers");
   //Table headers
-  readonly tableHeader = this.page.locator("#table-customers th div");
+  readonly tableHeader = this.page.locator("#table-customers th div[current]");
   readonly emailHeader = this.tableHeader.filter({ hasText: "Email" });
   readonly nameHeader = this.tableHeader.filter({ hasText: "Name" });
   readonly countryHeader = this.tableHeader.filter({ hasText: "Country" });
@@ -36,6 +39,12 @@ export class CustomersPage extends SalesPortalPage {
   readonly emptyTableRow = this.page.locator("td.fs-italic");
 
   readonly uniqueElement = this.addNewCustomerButton;
+
+  async open() {
+    await this.page.evaluate(async () => {
+      await (window as typeof window & { renderCustomersPage: () => Promise<void> }).renderCustomersPage();
+    });
+  }
 
   async clickAddNewCustomer() {
     await this.addNewCustomerButton.click();
@@ -115,5 +124,22 @@ export class CustomersPage extends SalesPortalPage {
     await this.fillSearch(value);
     await this.clickSearch();
     await this.waitForOpened();
+  }
+
+  async clickTableHeader(header: customersSortField) {
+    switch (header) {
+      case "email":
+        await this.emailHeader.click();
+        break;
+      case "name":
+        await this.nameHeader.click();
+        break;
+      case "country":
+        await this.countryHeader.click();
+        break;
+      case "createdOn":
+        await this.createdOnHeader.click();
+        break;
+    }
   }
 }

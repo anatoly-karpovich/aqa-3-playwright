@@ -6,8 +6,8 @@ interface ISalesPortalControllers {
 }
 
 export const test = base.extend<ISalesPortalControllers>({
-  customersController: async ({}, use) => {
-    await use(new CustomersController());
+  customersController: async ({ request }, use) => {
+    await use(new CustomersController(request));
   },
 });
 export { expect } from "@playwright/test";

@@ -16,3 +16,7 @@ export interface IResponseFields {
   IsSuccess: boolean;
   ErrorMessage: string | null;
 }
+
+export type sortDirection = "asc" | "desc";
+
+export type customersSortField = "createdOn" | "email" | "name" | "country";

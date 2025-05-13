@@ -1,18 +1,22 @@
-import { APIResponse, request } from "@playwright/test";
+import { APIRequestContext, APIResponse, request } from "@playwright/test";
 import { apiConfig } from "config/api-config";
 import _ from "lodash";
 import { IRequestOptions, IResponse } from "types/api.types";
 
 export class RequestApi {
+  constructor(private requestContext: APIRequestContext) {}
   private response: APIResponse | undefined;
 
   async send<T extends Object | null>(options: IRequestOptions): Promise<IResponse<T>> {
     try {
-      const requestContext = await request.newContext({
-        baseURL: options.baseURL ?? apiConfig.BASE_URL,
-      });
+      // const requestContext = await request.newContext({
+      //   baseURL: options.baseURL ?? apiConfig.BASE_URL,
+      // });
 
-      this.response = await requestContext.fetch(options.url, _.omit(options, ["baseURL", "url"]));
+      this.response = await this.requestContext.fetch(
+        options.baseURL + options.url,
+        _.omit(options, ["baseURL", "url"])
+      );
       if (this.response.status() >= 500) throw new Error("Request failed with status " + this.response.status());
       const result = await this.transformResponse();
       return result;
