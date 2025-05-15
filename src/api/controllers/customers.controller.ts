@@ -14,6 +14,7 @@ export class CustomersController {
 
   async create(body: ICustomer, token: string) {
     const options: IRequestOptions = {
+      baseURL: apiConfig.BASE_URL,
       url: apiConfig.ENDPOINTS.CUSTOMERS,
       method: "post",
       data: body,
@@ -27,6 +28,7 @@ export class CustomersController {
 
   async getById(id: string, token: string) {
     const options: IRequestOptions = {
+      baseURL: apiConfig.BASE_URL,
       url: apiConfig.ENDPOINTS.CUSTOMER_BY_ID(id),
       method: "get",
       headers: {
@@ -39,6 +41,7 @@ export class CustomersController {
 
   async getAll(token: string, params?: Record<string, string>) {
     const options: IRequestOptions = {
+      baseURL: apiConfig.BASE_URL,
       url: apiConfig.ENDPOINTS.CUSTOMERS + (params ? convertRequestParams(params) : ""),
       method: "get",
       headers: {
@@ -51,6 +54,7 @@ export class CustomersController {
 
   async update(id: string, body: ICustomer, token: string) {
     const options: IRequestOptions = {
+      baseURL: apiConfig.BASE_URL,
       url: apiConfig.ENDPOINTS.CUSTOMER_BY_ID(id),
       method: "put",
       data: body,
@@ -64,12 +68,14 @@ export class CustomersController {
 
   async delete(id: string, token: string) {
     const options: IRequestOptions = {
+      baseURL: apiConfig.BASE_URL,
       url: apiConfig.ENDPOINTS.CUSTOMER_BY_ID(id),
       method: "delete",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
+    console.log(options);
     return await this.request.send<null>(options);
   }
 }
