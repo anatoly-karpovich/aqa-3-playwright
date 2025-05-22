@@ -3,6 +3,7 @@ import { AddNewCustomerPage } from "ui/pages/customers/add-new-customer.page";
 import { CustomerDetailsPage } from "ui/pages/customers/customer-details.page";
 import { CustomersPage } from "ui/pages/customers/customers.page";
 import { EditCustomerPage } from "ui/pages/customers/edit-customer.page";
+import { logStep } from "utils/reporter.utils";
 
 export class CustomersUIService {
   private customersPage: CustomersPage;
@@ -16,6 +17,7 @@ export class CustomersUIService {
     this.customerDetailsPage = new CustomerDetailsPage(page);
   }
 
+  @logStep("Open Add New Customer Page from Customers Page")
   async openAddPage() {
     await this.customersPage.clickAddNewCustomer();
     await this.addNewCustomerPage.waitForOpened();

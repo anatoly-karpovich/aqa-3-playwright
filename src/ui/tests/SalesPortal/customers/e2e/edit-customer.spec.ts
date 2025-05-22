@@ -5,14 +5,15 @@ test.describe("[E2E] [UI] [Customers] [Edit]", () => {
   let id = "";
   let token = "";
   test("Edit customer with smoke data", async ({
-    signInUIService,
+    page,
     homeUIService,
     customersUIService,
     editCustomerUIService,
     customersController,
     customersApiService,
   }) => {
-    token = await signInUIService.signInAsLocalUser();
+    homeUIService.openAsLoggedInUser();
+    token = (await page.context().cookies()).find((c) => c.name === "Authorization")!.value;
     const createdCustomer = await customersApiService.create(token);
     await homeUIService.openModule("Customers");
     await customersUIService.openEditPage(createdCustomer.email);

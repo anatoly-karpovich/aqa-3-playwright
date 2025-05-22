@@ -20,6 +20,5 @@ test.describe("[UI] [Heroku] [Links]", async () => {
     // expect(linksWithText.length).toBe(45);
 
     const liksTextArray = await Promise.all(links.map((el) => el.innerText()));
-    console.log(liksTextArray);
   });
 });

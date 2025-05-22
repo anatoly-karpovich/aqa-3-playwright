@@ -48,7 +48,8 @@ test.describe("[UI] [Sales Portal] [Customers]", async () => {
     // await page.getByRole("button", { name: "Login" }).click();
 
     // await homePage.waitForOpened();
-    await loginAsLocalUser();
+    // await loginAsLocalUser();
+    await homePage.openPortal();
     await homePage.clickModuleButton("Customers");
     await customersPage.waitForOpened();
     await customersPage.clickFilter();

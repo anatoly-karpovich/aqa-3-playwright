@@ -117,7 +117,7 @@ test.describe("[UI] [Heroku] Dynamic Loading", () => {
 });
 
 test.describe("[UI] [Heroku] Form Authentication", () => {
-  test.only("Visual Regression", async ({ page }) => {
+  test("Visual Regression", async ({ page }) => {
     await page.goto("https://the-internet.herokuapp.com");
     const header = page.getByRole("heading", { name: "Welcome to the-internet" });
     await expect(header).toHaveScreenshot();

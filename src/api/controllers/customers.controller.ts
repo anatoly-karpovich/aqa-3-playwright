@@ -3,6 +3,7 @@ import { RequestApi } from "api/apiClients/request";
 import { apiConfig } from "config/api-config";
 import { IRequestOptions } from "types/api.types";
 import { ICustomer, ICustomerResponse, ICustomersResponse } from "types/customer.types";
+import { logStep } from "utils/reporter.utils";
 import { convertRequestParams } from "utils/requestParams";
 
 export class CustomersController {
@@ -12,6 +13,7 @@ export class CustomersController {
     this.request = new RequestApi(context);
   }
 
+  @logStep()
   async create(body: ICustomer, token: string) {
     const options: IRequestOptions = {
       baseURL: apiConfig.BASE_URL,
@@ -26,6 +28,7 @@ export class CustomersController {
     return await this.request.send<ICustomerResponse>(options);
   }
 
+  @logStep()
   async getById(id: string, token: string) {
     const options: IRequestOptions = {
       baseURL: apiConfig.BASE_URL,
@@ -39,6 +42,7 @@ export class CustomersController {
     return await this.request.send<ICustomerResponse>(options);
   }
 
+  @logStep()
   async getAll(token: string, params?: Record<string, string>) {
     const options: IRequestOptions = {
       baseURL: apiConfig.BASE_URL,
@@ -52,6 +56,7 @@ export class CustomersController {
     return await this.request.send<ICustomersResponse>(options);
   }
 
+  @logStep()
   async update(id: string, body: ICustomer, token: string) {
     const options: IRequestOptions = {
       baseURL: apiConfig.BASE_URL,
@@ -66,6 +71,7 @@ export class CustomersController {
     return await this.request.send<ICustomerResponse>(options);
   }
 
+  @logStep()
   async delete(id: string, token: string) {
     const options: IRequestOptions = {
       baseURL: apiConfig.BASE_URL,
@@ -75,7 +81,6 @@ export class CustomersController {
         Authorization: `Bearer ${token}`,
       },
     };
-    console.log(options);
     return await this.request.send<null>(options);
   }
 }

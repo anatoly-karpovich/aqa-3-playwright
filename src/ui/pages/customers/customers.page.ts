@@ -4,6 +4,7 @@ import { COUNTRIES } from "data/customers/countries.data";
 import { FilterModal } from "../modals/customers/filter.modal";
 import { DeleteCustomerModal } from "../modals/customers/delete.modal";
 import { customersSortField } from "types/api.types";
+import { logStep } from "utils/reporter.utils";
 
 export class CustomersPage extends SalesPortalPage {
   //Modals
@@ -46,6 +47,7 @@ export class CustomersPage extends SalesPortalPage {
     });
   }
 
+  @logStep("Click on Add New Customer button")
   async clickAddNewCustomer() {
     await this.addNewCustomerButton.click();
   }

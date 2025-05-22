@@ -33,7 +33,7 @@ test.describe("[UI] [Integration] [Products] [Details]", async () => {
       IsSuccess: true,
     });
 
-    await signInUIService.signInAsLocalUser();
+    await homeUIService.openAsLoggedInUser();
     await homeUIService.openModule("Products");
     await productsPage.clickDetails("Test");
 

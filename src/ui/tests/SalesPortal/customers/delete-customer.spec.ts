@@ -4,13 +4,12 @@ import { expect, test } from "fixtures/businessSteps.fixture";
 
 test.describe("[UI] [Sales Portal] [Customers]", async () => {
   test("Should delete customer on Edit Customer page", async ({
-    loginAsLocalUser,
     homePage,
     customersPage,
     addNewCustomerPage,
     editCustomerPage,
   }) => {
-    await loginAsLocalUser();
+    homePage.openPortal();
     await homePage.waitForOpened();
     await homePage.clickModuleButton("Customers");
     await customersPage.waitForOpened();
@@ -42,7 +41,7 @@ test.describe("[UI] [Sales Portal] [Customers]", async () => {
     addNewCustomerPage,
     editCustomerPage,
   }) => {
-    await loginAsLocalUser();
+    await homePage.openPortal();
     await homePage.waitForOpened();
     await homePage.clickModuleButton("Customers");
     await customersPage.waitForOpened();

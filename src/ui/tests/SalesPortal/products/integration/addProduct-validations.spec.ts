@@ -9,7 +9,7 @@ test.describe("[UI] [Integration] [Products] [Add] Validations", () => {
     productsPage,
     addNewProductPage,
   }) => {
-    await signInUIService.signInAsLocalUser();
+    await homeUIService.openAsLoggedInUser();
     await homeUIService.openModule("Products");
     await productsPage.addNewProductButton.click();
     await addNewProductPage.fillInputs({

@@ -1,8 +1,8 @@
 import { test, expect } from "fixtures/businessSteps.fixture";
 
 test.describe("[UI] [Customers] [Edit]", async () => {
-  test("Edit customer with smoke data", async ({ loginAsLocalUser, homePage, customersPage, editCustomerPage }) => {
-    loginAsLocalUser();
+  test("Edit customer with smoke data", async ({ homePage, customersPage, editCustomerPage }) => {
+    await homePage.openPortal();
     await homePage.clickModuleButton("Customers");
     await customersPage.waitForOpened();
     await customersPage.clickTableAction("user@domain.com	", "edit");
@@ -18,6 +18,5 @@ test.describe("[UI] [Customers] [Edit]", async () => {
       // street: "123!@#",
     });
     const errors = await editCustomerPage.getFormErrors();
-    console.log(errors);
   });
 });

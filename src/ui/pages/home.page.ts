@@ -1,6 +1,7 @@
 import { Locator, Page } from "@playwright/test";
 import { ModuleName } from "types/home.types";
 import { SalesPortalPage } from "./salesPortal.page";
+import { logStep } from "utils/reporter.utils";
 
 export class HomePage extends SalesPortalPage {
   title = this.page.locator(".welcome-text");
@@ -10,6 +11,7 @@ export class HomePage extends SalesPortalPage {
 
   uniqueElement = this.title;
 
+  @logStep("Click on Module button")
   async clickModuleButton(moduleName: ModuleName) {
     const moduleButtons: Record<ModuleName, Locator> = {
       Customers: this.customersButton,

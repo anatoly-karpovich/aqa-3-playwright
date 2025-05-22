@@ -8,7 +8,7 @@ export interface IRequestOptions {
 
 export interface IResponse<T extends object | null> {
   status: number;
-  headers: object;
+  headers: Record<string, string>;
   body: T;
 }
 

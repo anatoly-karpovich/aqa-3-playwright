@@ -1,8 +1,9 @@
-import { Page } from "@playwright/test";
+import test, { Page } from "@playwright/test";
 import { ModuleName } from "types/home.types";
 import { CustomersPage } from "ui/pages/customers/customers.page";
 import { HomePage } from "ui/pages/home.page";
 import { ProductsPage } from "ui/pages/products/products.page";
+import { logStep } from "utils/reporter.utils";
 
 export class HomeUIService {
   homePage: HomePage;
@@ -14,6 +15,7 @@ export class HomeUIService {
     this.productsPage = new ProductsPage(page);
   }
 
+  @logStep()
   async openModule(moduleName: ModuleName) {
     await this.homePage.clickModuleButton(moduleName);
     switch (moduleName) {
@@ -24,5 +26,11 @@ export class HomeUIService {
       case "Products":
         await this.productsPage.waitForOpened();
     }
+  }
+
+  @logStep("Open Sales Portal on Home Page")
+  async openAsLoggedInUser() {
+    await this.homePage.openPortal();
+    await this.homePage.waitForOpened();
   }
 }

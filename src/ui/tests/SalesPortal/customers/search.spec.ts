@@ -1,8 +1,9 @@
 import { test, expect } from "fixtures/businessSteps.fixture";
 
 test.describe("[UI] [Customers] [Search]", async () => {
-  test("Should search for existing customer by email", async ({ loginAsLocalUser, homePage, customersPage }) => {
-    await loginAsLocalUser();
+  test("Should search for existing customer by email", { tag: ["@smoke"] }, async ({ homePage, customersPage }) => {
+    await homePage.openPortal();
+    // await homePage.waitForOpened();
     await homePage.clickModuleButton("Customers");
     await customersPage.waitForOpened();
     const expected = {
