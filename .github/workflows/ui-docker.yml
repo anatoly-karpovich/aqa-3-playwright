@@ -10,9 +10,10 @@ on:
 
 jobs:
   test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.51.1-noble
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
 
     steps:
       # Step 1: Checkout repository
