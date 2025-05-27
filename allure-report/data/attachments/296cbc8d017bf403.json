@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "content-type": "application/json",
+    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzRmZDYzNzM1YWNlNWIwMzUyN2Y4MSIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzQ4MzY2NTc0LCJleHAiOjE3NDg0NTI5NzR9.hlwINGp-emn0rjiUjxxuJTjogLm9TAElfjnIdqiaUns"
+  },
+  "body": {
+    "email": "test1748372566105@gmail.com",
+    "name": "Test lJoVarYNeGizYqLBCDuXmkkMfCdUijqRvxB",
+    "country": "Canada",
+    "city": "City UsGokLyLXlCDVxN",
+    "street": "Street 1w98tJDaDe82AG6gaKy0BM4cR8tqEefGs",
+    "house": 40,
+    "flat": 1096,
+    "phone": "+9854880585",
+    "notes": "Notes ducYTmfIFABeRGRRammkYXiASnRqNJnaVGCJDQMGWsYePjlQrlyikxgIxRcRFiBnMQfhjsFTJrqwDHQefqsTEodvIGtgjnLzMybbMwKWfTyvAlzZHunHagOSmbgCIHdDSkTjDZOzpEDSblsBeEFOFnSaztDSYSzCaoNrCEiWxqiDmblKKKgEjZJPOXOMbcILYXrhSMMFPtSltpZAgaENEvpXDCcwEHFUsWQgDYCXqmiSUuxhgCnI"
+  }
+}
