@@ -46,7 +46,7 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
         headless: true,
       },
-      testDir: "src/ui/tests/SalesPortal/customers/e2e", //to speed up CI runs
+      testDir: "src/ui/tests/SalesPortal/",
       testMatch: /.*\.setup\.ts/,
     },
     {
@@ -64,7 +64,7 @@ export default defineConfig({
         storageState: "src/.auth/user.json",
       },
       dependencies: ["setup"],
-      testDir: "./src/ui/tests/SalesPortal",
+      testDir: "./src/ui/tests/SalesPortal/customers/e2e", //to speed up CI runs",
     },
 
     {
