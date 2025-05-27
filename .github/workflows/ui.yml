@@ -1,0 +1,32 @@
+name: Run playwright UI tests
+on:
+  workflow_dispatch: # Manually trigger the workflow
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Install browsers
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      # Run Playwright UI tests
+      - name: Run Playwright UI tests
+        env:
+          ADMIN_PASSWORD: ${{ secrets.USER_LOGIN }}
+          ADMIN_USERNAME: ${{ secrets.USER_PASSWORD }}
+        run: npm run test:ui
+        continue-on-error: true
