@@ -26,7 +26,7 @@ jobs:
       # Run Playwright UI tests
       - name: Run Playwright UI tests
         env:
-          ADMIN_PASSWORD: ${{ secrets.USER_LOGIN }}
-          ADMIN_USERNAME: ${{ secrets.USER_PASSWORD }}
+          USER_LOGIN: ${{ secrets.USER_LOGIN }}
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
         run: npm run test:ui
         continue-on-error: true
