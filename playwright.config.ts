@@ -26,7 +26,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [["html"], ["allure-playwright"]],
+  reporter: [["html"], ["list"], ["allure-playwright"]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -46,7 +46,7 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
         headless: true,
       },
-      testDir: "src/ui/tests/SalesPortal",
+      testDir: "src/ui/tests/SalesPortal/customers/e2e", //to speed up CI runs
       testMatch: /.*\.setup\.ts/,
     },
     {
