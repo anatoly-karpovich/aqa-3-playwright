@@ -5,3 +5,8 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+.env
+src/.auth/user.json
+allure-results
+allure-report
+chat.js

@@ -1,4 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * Read environment variables from file.
@@ -12,7 +15,9 @@ import { defineConfig, devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: "./src/ui/tests",
+  globalSetup: require.resolve("./src/config/global.setup"),
+  globalTeardown: require.resolve("./src/config/global.teardown"),
+  testDir: "./src/",
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -20,9 +25,9 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 3 : 5,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: "html",
+  reporter: [["html"], ["list"], ["allure-playwright"]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -30,27 +35,56 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+    screenshot: "only-on-failure",
+    video: "on-first-retry",
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
+      name: "setup",
+      use: {
+        ...devices["Desktop Chrome"],
+        headless: true,
+      },
+      testDir: "src/ui/tests/SalesPortal/",
+      testMatch: /.*\.setup\.ts/,
+    },
+    {
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        // , headless: false
+        // headless: false,
       },
     },
 
     {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
+      name: "sales-portal-ui",
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: "src/.auth/user.json",
+      },
+      dependencies: ["setup"],
+      testDir: "./src/ui/tests/SalesPortal", //to speed up CI runs",
     },
 
     {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      name: "sales-portal-api",
+      use: {
+        ...devices["Desktop Chrome"],
+      },
+      testDir: "./src/api/tests",
     },
+
+    // {
+    //   name: "firefox",
+    //   use: { ...devices["Desktop Firefox"] },
+    // },
+
+    // {
+    //   name: "webkit",
+    //   use: { ...devices["Desktop Safari"] },
+    // },
 
     /* Test against mobile viewports. */
     // {
