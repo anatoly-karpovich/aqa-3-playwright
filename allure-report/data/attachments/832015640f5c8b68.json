@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "content-type": "application/json",
+    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzRmZDYzNzM1YWNlNWIwMzUyN2Y4MSIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzQ4MzY2NTc0LCJleHAiOjE3NDg0NTI5NzR9.hlwINGp-emn0rjiUjxxuJTjogLm9TAElfjnIdqiaUns"
+  },
+  "body": {
+    "email": "test1748373777224@gmail.com",
+    "name": "Test rGcRrxyNKqaobIeiFyvOeHYZHpGxzUQjmAR",
+    "country": "Great Britain",
+    "city": "City oMUcwGkUqgiOWmT",
+    "street": "Street hu9DAYX61dghjXrxhSqupYSk6b2zVmFK7",
+    "house": 529,
+    "flat": 2820,
+    "phone": "+1108548067",
+    "notes": "Notes zHkgWVsnYXilALOdcjQvWHkZsrxoRAKmLzVsEvgAzpKLbPyDYRORmoDIAoISNglRUduPYYzqjYVtUQxJLzbYQVQBISkPaenpykRlYvllkcxOTigYUygOGtLrqCWrCVRyJSvWomOLJnmIXrdWTuxHFfjuYuNqayBDlolsmlmvXtoCOzRyCsgyxzjEracTTLvfKYSRHMDuDAXHPUFSAMpMDUOYuXmkqXuRVBQdicKoKgDqGvuicktu"
+  }
+}
