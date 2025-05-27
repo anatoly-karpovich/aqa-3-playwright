@@ -1,5 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","3161","Should display valid customer data","sales-portal-ui","Tue May 27 18:20:08 UTC 2025","passed","Tue May 27 18:20:11 UTC 2025","[E2E] [UI] [Customers] [Details]","ui/tests/SalesPortal/customers/e2e/details.spec.ts","",""
-"","921","Login to Sales Portal","setup","Tue May 27 18:20:02 UTC 2025","passed","Tue May 27 18:20:03 UTC 2025","","ui/tests/SalesPortal/auth.setup.ts","",""
-"","3562","Edit customer with smoke data","sales-portal-ui","Tue May 27 18:20:15 UTC 2025","passed","Tue May 27 18:20:18 UTC 2025","[E2E] [UI] [Customers] [Edit]","ui/tests/SalesPortal/customers/e2e/edit-customer.spec.ts","",""
-"","4147","Create customer with smoke data","sales-portal-ui","Tue May 27 18:20:04 UTC 2025","passed","Tue May 27 18:20:08 UTC 2025","[E2E] [UI] [Customers] [Create]","ui/tests/SalesPortal/customers/e2e/create-customer.spec.ts","",""

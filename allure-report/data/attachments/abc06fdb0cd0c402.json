@@ -1,9 +1,0 @@
-{
-  "headers": {
-    "content-type": "application/json"
-  },
-  "body": {
-    "username": "test@gmail.com",
-    "password": "12345678"
-  }
-}
