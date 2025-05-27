@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  playwright:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+
+  playwright-ui:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    command: npm run test:ui
