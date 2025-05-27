@@ -16,6 +16,7 @@ dotenv.config();
  */
 export default defineConfig({
   globalSetup: require.resolve("./src/config/global.setup"),
+  globalTeardown: require.resolve("./src/config/global.teardown"),
   testDir: "./src/",
   /* Run tests in files in parallel */
   fullyParallel: true,
