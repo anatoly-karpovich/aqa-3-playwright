@@ -1,27 +1,16 @@
-import { expect, Locator, Page } from "@playwright/test";
-import { SALES_PORTAL_URL } from "config/evnironment";
-import { BasePage } from "./base.page";
+import { HeaderNavigationButton } from "types/header.types";
+import { NotificationsModal } from "./modals/notifications.modal";
+import { ProjectPage } from "./project.page";
 
-export abstract class SalesPortalPage extends BasePage {
-  abstract uniqueElement: Locator;
+export abstract class SalesPortalPage extends ProjectPage {
+  readonly notificationsModal = new NotificationsModal(this.page);
+  readonly headerMenu = this.page.locator("header");
+  readonly navigationMenuButton = (name: HeaderNavigationButton) => this.headerMenu.locator(`[name="${name}"]`);
+  readonly themeToggle = this.headerMenu.locator("#theme-toggle");
+  readonly logoutButton = this.headerMenu.locator("#signOut");
+  readonly notificationBell = this.headerMenu.locator("#notification-bell");
 
-  readonly spinner = this.page.locator(".spinner-border");
-  readonly notification = this.page.locator(".toast-body");
-
-  async waitForOpened() {
-    await expect(this.uniqueElement).toBeVisible();
-    await this.waitForSpinner();
-  }
-
-  async waitForSpinner() {
-    await expect(this.spinner).toHaveCount(0);
-  }
-
-  async waitForNotification(text: string) {
-    await expect(this.notification.last()).toHaveText(text);
-  }
-
-  async openPortal() {
-    this.page.goto(SALES_PORTAL_URL);
+  async clickNavigationMenuItem(itemName: HeaderNavigationButton) {
+    await this.navigationMenuButton(itemName).click();
   }
 }

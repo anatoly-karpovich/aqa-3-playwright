@@ -1,6 +1,7 @@
 import { expect, Locator } from "@playwright/test";
 import { SalesPortalPage } from "../salesPortal.page";
 import { IProduct } from "types/products.types";
+import { logStep } from "utils/reporter.utils";
 
 export class AddNewProductPage extends SalesPortalPage {
   readonly name = this.page.locator("#inputName");
@@ -12,6 +13,12 @@ export class AddNewProductPage extends SalesPortalPage {
   readonly nameError = this.page.locator("#error-inputName");
 
   readonly uniqueElement = this.name;
+
+  @logStep("Open Add New Product page via URL")
+  async open() {
+    await this.openPage("PRODUCT_ADD");
+    await this.waitForOpened();
+  }
 
   async fillInputs(product: Partial<IProduct>) {
     product.name && (await this.name.fill(String(product.name)));

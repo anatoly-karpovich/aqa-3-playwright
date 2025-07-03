@@ -1,6 +1,7 @@
 import { ICustomer } from "types/customer.types";
 import { SalesPortalPage } from "../salesPortal.page";
 import { DeleteCustomerModal } from "../modals/customers/delete.modal";
+import { logStep } from "utils/reporter.utils";
 
 export class EditCustomerPage extends SalesPortalPage {
   //Modals
@@ -32,6 +33,11 @@ export class EditCustomerPage extends SalesPortalPage {
 
   uniqueElement = this.saveChangesButton;
 
+  @logStep("Open edit customer page via URL")
+  async open(id: string) {
+    await this.openPage("CUSTOMER_EDIT", id);
+    await this.waitForOpened();
+  }
   async fillInputs(customer: Partial<ICustomer>) {
     customer.email && (await this.emailInput.fill(customer.email));
     customer.name && (await this.nameInput.fill(customer.name));

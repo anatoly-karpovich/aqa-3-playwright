@@ -1,8 +1,8 @@
-import test, { expect } from "@playwright/test";
 import { apiConfig } from "config/api-config";
 import { USER_LOGIN, USER_PASSWORD } from "config/evnironment";
 import { generateCustomerData } from "data/customers/generateCustomer.data";
 import { STATUS_CODES } from "data/statusCodes";
+import { test, expect } from "fixtures";
 
 test.describe("[API] [Customers] [Delete]", () => {
   test("Should delete customer", async ({ request }) => {
@@ -39,5 +39,13 @@ test.describe("[API] [Customers] [Delete]", () => {
     const deleteBody = await response.text();
     expect.soft(response.status()).toBe(STATUS_CODES.DELETED);
     expect.soft(deleteBody).toBe("");
+  });
+
+  test("Should delete all customers", async ({ customersController, signInApiService }) => {
+    const token = await signInApiService.loginAsLocalUser();
+    const customers = (await customersController.getAll(token)).body.Customers;
+    for (const c of customers) {
+      await customersController.delete(c._id, token);
+    }
   });
 });

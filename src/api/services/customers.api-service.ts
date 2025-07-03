@@ -19,4 +19,10 @@ export class CustomersApiService {
     validateResponse(response, STATUS_CODES.CREATED, true, null);
     return response.body.Customer;
   }
+
+  @logStep("Delete Customer via API")
+  async delete(id: string, token: string) {
+    const response = await this.controller.delete(id, token);
+    expect.soft(response.status).toBe(STATUS_CODES.DELETED);
+  }
 }

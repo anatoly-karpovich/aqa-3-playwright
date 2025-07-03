@@ -1,6 +1,7 @@
 import { sendNotification } from "utils/notifications/telegram";
 
 export default async function () {
+  if (!process.env.CI) return;
   await sendNotification(`Test run finished!
     
 Link to deployed report:

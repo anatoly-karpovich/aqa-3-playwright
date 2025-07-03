@@ -1,4 +1,4 @@
-import { test, expect } from "fixtures/ui-services.fixture";
+import { test, expect } from "fixtures";
 import { apiConfig } from "config/api-config";
 import { USER_LOGIN, USER_PASSWORD } from "config/evnironment";
 import { generateCustomerData } from "data/customers/generateCustomer.data";

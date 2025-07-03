@@ -3,6 +3,6 @@ import { SalesPortalPage } from "ui/pages/salesPortal.page";
 
 export abstract class Modal extends SalesPortalPage {
   async waitForClosed() {
-    await expect(this.uniqueElement).not.toBeVisible();
+    await expect(this.uniqueElement).not.toBeVisible({ timeout: 30000 });
   }
 }

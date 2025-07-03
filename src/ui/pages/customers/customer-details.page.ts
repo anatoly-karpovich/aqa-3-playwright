@@ -16,11 +16,8 @@ export class CustomerDetailsPage extends SalesPortalPage {
   uniqueElement = this.registrationDate;
 
   async open(id: string) {
-    await this.page.evaluate(async (id: string) => {
-      await (
-        window as typeof window & { renderCustomerDetailsPage: (id: string) => Promise<void> }
-      ).renderCustomerDetailsPage(id);
-    }, id);
+    await this.openPage("CUSTOMER_DETAILS", id);
+    await this.waitForOpened();
   }
 
   async getDetails(): Promise<ICustomer & { createdOn: string }> {

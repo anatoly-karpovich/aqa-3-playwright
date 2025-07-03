@@ -38,13 +38,14 @@ export class CustomersPage extends SalesPortalPage {
   readonly detailsButton = (email: string) => this.tableRowByEmail(email).getByTitle("Details");
   readonly deleteButton = (email: string) => this.tableRowByEmail(email).getByTitle("Delete");
   readonly emptyTableRow = this.page.locator("td.fs-italic");
+  readonly paginationSection = this.page.locator("#pagination-controls");
 
-  readonly uniqueElement = this.addNewCustomerButton;
+  readonly uniqueElement = this.page.locator('[data-name="table-customers"]');
 
+  @logStep("Open Customer page via URL")
   async open() {
-    await this.page.evaluate(async () => {
-      await (window as typeof window & { renderCustomersPage: () => Promise<void> }).renderCustomersPage();
-    });
+    await this.openPage("CUSTOMERS");
+    await this.waitForOpened();
   }
 
   @logStep("Click on Add New Customer button")

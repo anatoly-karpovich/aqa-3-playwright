@@ -17,6 +17,12 @@ export class AddNewCustomerPage extends SalesPortalPage {
 
   uniqueElement = this.saveNewCustomerButton;
 
+  @logStep("Open Add New Customer page via URL")
+  async open() {
+    await this.openPage("CUSTOMER_ADD");
+    await this.waitForOpened();
+  }
+
   @logStep("Fill new customer inputs")
   async fillInputs(customer: Partial<ICustomer>) {
     customer.email && (await this.emailInput.fill(customer.email));

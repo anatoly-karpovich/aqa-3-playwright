@@ -22,12 +22,20 @@ export interface ICustomerResponse extends IResponseFields {
   Customer: ICustomerFromResponse;
 }
 
-export interface ICustomersResponse extends IResponseFields {
-  Customers: ICustomerFromResponse[];
+export interface ICustomersResponse extends ICustomersSortedResponse {
   sorting: {
     sortField: customersSortField;
     sortOrder: sortDirection;
   };
+  page: number;
+  limit: number;
+  search: string;
+  total: number;
+  country: COUNTRIES[];
+}
+
+export interface ICustomersSortedResponse extends IResponseFields {
+  Customers: ICustomerFromResponse[];
 }
 
 export type ICustomerInTable = Pick<ICustomer, "email" | "country" | "name">;

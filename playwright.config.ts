@@ -48,20 +48,13 @@ export default defineConfig({
         headless: true,
       },
       testDir: "src/ui/tests/SalesPortal/",
-      testMatch: /.*\.setup\.ts/,
+      testMatch: /\.setup\.ts/,
     },
-    {
-      name: "chromium",
-      use: {
-        ...devices["Desktop Chrome"],
-        // headless: false,
-      },
-    },
-
     {
       name: "sales-portal-ui",
       use: {
         ...devices["Desktop Chrome"],
+        viewport: { width: 1920, height: 1080 },
         storageState: "src/.auth/user.json",
       },
       dependencies: ["setup"],

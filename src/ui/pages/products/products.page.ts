@@ -1,3 +1,4 @@
+import { logStep } from "utils/reporter.utils";
 import { ProductDetailsModal } from "../modals/products/productDetails.modal";
 import { SalesPortalPage } from "../salesPortal.page";
 
@@ -9,7 +10,13 @@ export class ProductsPage extends SalesPortalPage {
   readonly detailsButton = (name: string) => this.tableRowByName(name).getByTitle("Details");
   readonly addNewProductButton = this.page.getByRole("button", { name: "Add Product" });
 
-  readonly uniqueElement = this.addNewProductButton;
+  readonly uniqueElement = this.page.locator('[data-name="table-products"]');
+
+  @logStep("Open Products page via URL")
+  async open() {
+    await this.openPage("PRODUCTS");
+    await this.waitForOpened();
+  }
 
   async clickDetails(name: string) {
     await this.detailsButton(name).click();

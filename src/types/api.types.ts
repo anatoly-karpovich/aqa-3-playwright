@@ -20,3 +20,15 @@ export interface IResponseFields {
 export type sortDirection = "asc" | "desc";
 
 export type customersSortField = "createdOn" | "email" | "name" | "country";
+
+export enum SORT_DIRECTION {
+  ASC = "asc",
+  DESC = "desc",
+}
+
+export enum CUSTOMERS_SORT_FIELD {
+  CREATED_ON = "createdOn",
+  EMAIL = "email",
+  NAME = "name",
+  COUNTRY = "country",
+}

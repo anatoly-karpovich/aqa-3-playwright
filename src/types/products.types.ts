@@ -21,7 +21,19 @@ export interface IProductResponse extends IResponseFields {
 export interface IProductsResponse extends IResponseFields {
   Products: IProductFromResponse[];
   sorting: {
-    sortField: "createdOn" | "name" | "manufacturer" | "price";
+    sortField: PRODUCTS_SORT_FIELD;
     sortOrder: sortDirection;
   };
+  page: number;
+  limit: number;
+  search: string;
+  total: number;
+  manufacturer: MANUFACTURERS[];
+}
+
+export enum PRODUCTS_SORT_FIELD {
+  CREATED_ON = "createdOn",
+  NAME = "name",
+  MANUFACTURER = "manufacturer",
+  PRICE = "price",
 }
